@@ -79,6 +79,7 @@ void TicTacToe::setUpBoard()
                 i, j);
         }
     }
+    startGame();
 }
 
 //
