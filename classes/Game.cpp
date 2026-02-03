@@ -93,11 +93,12 @@ void Game::endTurn()
 
 void Game::scanForMouse()
 {
-    //if (gameHasAI() && getCurrentPlayer()->isAIPlayer()) 
-    //{
-    //    updateAI();
-    //    return;
-    //}
+	// Comment or Uncomment here to turn on and off AI
+    if (gameHasAI() && getCurrentPlayer()->isAIPlayer()) 
+    {
+        updateAI();
+        return;
+    }
 
     ImVec2 mousePos = ImGui::GetMousePos();
     mousePos.x -= ImGui::GetWindowPos().x;

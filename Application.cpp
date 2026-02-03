@@ -9,7 +9,6 @@ namespace ClassGame {
         //
         TicTacToe *game = nullptr;
         bool gameOver = false;
-        bool playAI = false;
         int gameWinner = -1;
 
         //
@@ -20,6 +19,8 @@ namespace ClassGame {
         {
             game = new TicTacToe();
             game->setUpBoard();
+
+            //game->setStateString("120220110");
             
 
             EndOfTurn();
@@ -43,13 +44,10 @@ namespace ClassGame {
                 if (!game->getCurrentPlayer()) return;
                 
                 ImGui::Begin("Settings");
-                if (ImGui::Button("Toggle AI")) {
-                    playAI = !playAI;
-                }
+                
                 ImGui::Text("Current Player Number: %d", game->getCurrentPlayer()->playerNumber());
                 ImGui::Text("Current Board State: %s", game->stateString().c_str());
                 ImGui::Text("Turn Number: %d", game->getCurrentTurnNo());
-                ImGui::Text("AI On: %s", playAI ? "True" : "False");
 
                 if (gameOver) {
                     ImGui::Text("Game Over!");
@@ -66,11 +64,6 @@ namespace ClassGame {
                 ImGui::Begin("GameWindow");
                 game->drawFrame();
 
-                // Check if player 2 is an AI, if true then have the AI play a move
-                if (game->getCurrentPlayer()->playerNumber() == 1 && !gameOver && playAI) {
-                    game->updateAI();
-                    EndOfTurn();   
-                }
                 ImGui::End();
         }
 
